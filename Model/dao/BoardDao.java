@@ -1,4 +1,4 @@
-package com.kh.spring.board.model.dao;
+package com.kh.spring.board.Model.dao;
 
 import java.util.ArrayList;
 
