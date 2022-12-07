@@ -7,9 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.board.model.vo.Reply;
-import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.board.Model.vo.Board;
+import com.kh.spring.board.Model.vo.Reply;
+import com.kh.spring.common.Model.vo.PageInfo;
 
 @Repository
 public class BoardDao {
@@ -45,12 +45,16 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.deleteBoard",boardNo);
 	}
 	
-	public ArrayList<Reply> viewReplyList(SqlSession sqlSession, int boardNo) {
+	public ArrayList<Reply> viewReplyList(SqlSessionTemplate sqlSession, int boardNo) {
 		return (ArrayList)sqlSession.selectList("boardMapper.viewReplyList", boardNo);
 	}
 
 	public int insertReply(SqlSession sqlSession, Reply reply) {
 		return sqlSession.insert("boardMapper.insertReply",reply);
+	}
+
+	public ArrayList<Board> viewTopBoard(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("boardMapper.viewTopBoard");
 	}
 }
 
