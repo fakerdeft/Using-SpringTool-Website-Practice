@@ -20,18 +20,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.kh.spring.board.model.service.BoardService;
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.board.model.vo.Reply;
-import com.kh.spring.common.model.vo.PageInfo;
-import com.kh.spring.common.template.Pagination;
-import com.kh.spring.member.model.vo.Member;
+import com.kh.spring.board.Model.service.BoardService;
+import com.kh.spring.board.Model.vo.Board;
+import com.kh.spring.board.Model.vo.Reply;
+import com.kh.spring.common.Model.vo.PageInfo;
+import com.kh.spring.common.Template.Pagination;
+import com.kh.spring.member.Model.vo.Member;
+
 
 @Controller
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	//게시글 전체 조회
 	@RequestMapping("list.bo")
 	public String selectList(@RequestParam(value="currentPage",defaultValue = "1")int currentPage,
 							Model model) {
@@ -48,6 +50,7 @@ public class BoardController {
 		return "board/boardListView";
 	}
 	
+	//게시글 상세보기
 	@RequestMapping("detail.bo")
 	public String selectBoard(@RequestParam(value="bno")int boardNo,
 								HttpSession session, Model model) {
@@ -63,6 +66,7 @@ public class BoardController {
 		return "common/errorPage";
 	}
 	
+	//게시글 등록
 	@GetMapping("insert.bo")
 	public String insertBoard(HttpSession session, Model model) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
@@ -97,6 +101,7 @@ public class BoardController {
 		return mv;
 	}
 	
+	//게시글 수정
 	@GetMapping("update.bo")
 	public String updateBoard(int boardNo, Model model) {
 		//수정하기 페이지에서 필요한 기존 게시글 정보 조회하여 보내주기
@@ -124,6 +129,7 @@ public class BoardController {
 		return "common/errorPage";
 	}
 	
+	//게시글 삭제
 	@RequestMapping("delete.bo")
 	public String boardDelete(int boardNo,String filePath
 							,HttpSession session) {
@@ -139,6 +145,7 @@ public class BoardController {
 		session.setAttribute("errorMsg","게시판 삭제 실패!");
 		return "redirect:/";
 	}
+	
 	
 	//현재 넘어온 첨부파일을 서버 폴더에 저장시키는 메서드(모듈)
 	public String saveFile(MultipartFile upfile, HttpSession session) {
@@ -171,16 +178,15 @@ public class BoardController {
 		return changeName;
 	}
 	
+	//댓글리스트 조회
 	@ResponseBody
 	@RequestMapping(value="viewReplyList.bo", produces="application/json; charset=UTF-8")
 	public String viewReplyList(int boardNo) {
 		ArrayList<Reply> replyList = boardService.viewReplyList(boardNo);
-		if(replyList != null) {
-			return new Gson().toJson(replyList);
-		}
 		return new Gson().toJson(replyList);
 	}
 	
+	//댓글 작성
 	@ResponseBody
 	@RequestMapping(value="insertReply.bo", produces="application/json; charset=UTF-8")
 	public String insertReply(HttpSession session,int boardNo,String replyContent) {
@@ -193,6 +199,14 @@ public class BoardController {
 			return new Gson().toJson("TT");
 		}
 		return new Gson().toJson("FF");
+	}
+	
+	//게시글 조회수top5 조회
+	@ResponseBody
+	@RequestMapping(value="viewTopBoard.bo", produces="application/json; charset=UTF-8")
+	public String viewTopBoard() {
+		ArrayList<Board> topList = boardService.viewTopBoard();
+		return new Gson().toJson(topList);
 	}
 	
 }
