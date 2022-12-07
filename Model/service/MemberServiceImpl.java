@@ -1,4 +1,4 @@
-package com.kh.spring.member.model.service;
+package com.kh.spring.member.Model.service;
 
 import java.util.List;
 
