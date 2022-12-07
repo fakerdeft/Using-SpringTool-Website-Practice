@@ -1,4 +1,4 @@
-package com.kh.spring.board.model.service;
+package com.kh.spring.board.Model.service;
 
 import java.util.ArrayList;
 
