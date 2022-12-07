@@ -1,4 +1,4 @@
-package com.kh.spring.board.controller;
+package com.kh.spring.board.ontroller;
 
 import java.io.File;
 import java.io.IOException;
