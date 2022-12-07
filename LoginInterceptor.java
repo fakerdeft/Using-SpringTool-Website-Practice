@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.kh.spring.member.Model.vo.Member;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter{
+public class LoginInterceptor implements HandlerInterceptor{
 	/*
 	 * Interceptor (정확히는 HandlerInterceptor)
 	 * - 해당 Controller가 실행되기 전, 실행된 후에 요청을 가로채 실행할 내용을 작성할 수 있다.
