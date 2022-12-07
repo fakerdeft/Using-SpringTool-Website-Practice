@@ -1,4 +1,4 @@
-package com.kh.spring.member.controller;
+package com.kh.spring.member.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
