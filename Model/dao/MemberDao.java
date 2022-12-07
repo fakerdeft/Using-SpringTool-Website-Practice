@@ -1,4 +1,4 @@
-package com.kh.spring.member.model.dao;
+package com.kh.spring.member.Model.dao;
 
 import java.util.List;
 
