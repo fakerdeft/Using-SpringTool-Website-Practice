@@ -6,10 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.spring.board.model.dao.BoardDao;
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.board.model.vo.Reply;
-import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.board.Model.dao.BoardDao;
+import com.kh.spring.board.Model.vo.Board;
+import com.kh.spring.board.Model.vo.Reply;
+import com.kh.spring.common.Model.vo.PageInfo;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -62,6 +62,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int insertReply(Reply reply) {
 		return boardDao.insertReply(sqlSession, reply);
+	}
+
+	@Override
+	public ArrayList<Board> viewTopBoard() {
+		return boardDao.viewTopBoard(sqlSession);
 	}
 
 	

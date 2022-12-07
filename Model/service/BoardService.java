@@ -2,9 +2,11 @@ package com.kh.spring.board.Model.service;
 
 import java.util.ArrayList;
 
-import com.kh.spring.board.model.vo.Board;
-import com.kh.spring.board.model.vo.Reply;
-import com.kh.spring.common.model.vo.PageInfo;
+import com.kh.spring.board.Model.vo.Board;
+import com.kh.spring.board.Model.vo.Reply;
+import com.kh.spring.common.Model.vo.PageInfo;
+
+
 
 public interface BoardService {
 	//게시글 총 개수
@@ -33,6 +35,9 @@ public interface BoardService {
  	
 	//댓글 작성
 	int insertReply(Reply reply);
+	
+	//게시글 조회수top5 조회
+	ArrayList<Board> viewTopBoard();
 
 }	
 
